@@ -9,28 +9,37 @@ This repo contains:
 
 ## Useful Commands 
 ```
-kubectl get pods # returns all available running pods
+ # Returns all available running pods
+kubectl get pods
 
-kubectl describe pod <name of the pod> # details for POD
+# Details for a POD
+kubectl describe pod <name of the pod> 
 
+# Expose a deployment to outside world
 kubectl expose <type name eg. deployment> <identifier/name> --port=(external port) --target-port=(container-port) --type=(service-type)  # expose a deployme to outside world
 
+# Useful for remote clusters
 kubectl port-forward <pod name> [LOCAL_PORT:REMOTE_PORT] # useful for remote clusters
 
+# Attach pod
 kubectl attach <pod name> -c <container>
 
-kubectl exec [-it] <pod name> [-c CONTAINER] -- COMMAND [tags ..] # bash access to a pod
+# Bash access to a pod
+kubectl exec [-it] <pod name> [-c CONTAINER] -- COMMAND [tags ..] 
 
-kubectl label [--overwrite] <type> KEY_1=VAL1... # update labels on a resource
+# Update labels on a resource
+kubectl label [--overwrite] <type> KEY_1=VAL1... 
 
+# Run an image
 kubectl run <name> --image=image
 
-kubectl scale --replicas=<num> deployment/<name of deployment> # for scaling a deployment
+# for scaling a deployment
+kubectl scale --replicas=<num> deployment/<name of deployment> 
 
+# Return all the available deployments
 kubectl get deployment
 
-# Updating the service when Scaling
-
+# Updating the service when Scaling with a LoadBalancer deployment
 kubectl expose deployment tomcat-deployment --type=LoadBalancer --port=8080 --target-port=8080 --name tomcat-load-balancer
 
 kubectl describe services tomcat-load-balancer
